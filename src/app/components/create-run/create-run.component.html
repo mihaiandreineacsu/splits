@@ -1,1 +1,61 @@
-<p>create-run works!</p>
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Create Run</h2>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Run Name</mat-label>
+        <input [(ngModel)]="run.title" matInput>
+      </mat-form-field>
+    </p>
+
+    <mat-accordion *ngIf="run.games.length > 0">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>Games</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-container *ngFor="let game of run.games; let gameIndex = index">
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Game Name</mat-label>
+              <input [(ngModel)]="game.title" matInput>
+              <mat-icon (click)="removeGame(gameIndex)" matSuffix>remove</mat-icon>
+            </mat-form-field>
+          </p>
+
+          <ng-container *ngFor="let split of game.splits; let splitIndex = index">
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>Split Name</mat-label>
+                <input [(ngModel)]="split.title" matInput>
+                <mat-icon (click)="removeSplit(gameIndex, splitIndex)" matSuffix>remove</mat-icon>
+              </mat-form-field>
+            </p>
+          </ng-container>
+
+          <mat-action-row>
+            <button (click)="createNewSplit(game)" mat-raised-button color="primary">Add Split
+              <mat-icon>add</mat-icon></button>
+          </mat-action-row>
+        </ng-container>
+
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button (click)="createNewGame()" mat-raised-button color="primary">Add game<mat-icon>add</mat-icon></button>
+  </mat-card-actions>
+  <mat-card-footer></mat-card-footer>
+</mat-card>
