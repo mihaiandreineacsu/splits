@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Optional, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Game } from 'src/app/shared/models/game.model';
 import { Run } from 'src/app/shared/models/run.model';
 import { Split } from 'src/app/shared/models/split.model';
@@ -9,14 +10,18 @@ import { Split } from 'src/app/shared/models/split.model';
   styleUrls: ['./create-run.component.scss']
 })
 export class CreateRunComponent {
-  panelOpenState = false;
-  run = new Run();
+  @Input() run = new Run();
+  @Output() runChange = new EventEmitter<Run>();
+
+  constructor(@Optional() private dialogRef?: MatDialogRef<CreateRunComponent>) {
+
+  }
 
   createNewGame() {
     this.run.games.push(new Game());
   }
 
-  removeGame(gameIndex: number){
+  removeGame(gameIndex: number) {
     this.run.games.splice(gameIndex, 1);
   }
 
@@ -24,7 +29,7 @@ export class CreateRunComponent {
     game.splits.push(new Split())
   }
 
-  removeSplit(gameIndex: number, splitIndex: number){
+  removeSplit(gameIndex: number, splitIndex: number) {
     this.run.games[gameIndex].splits.splice(splitIndex, 1);
   }
 }
