@@ -10,7 +10,7 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Run Name</mat-label>
-        <input [(ngModel)]="run.title" matInput>
+        <input required [(ngModel)]="run.title" matInput>
       </mat-form-field>
     </p>
 
@@ -26,7 +26,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Game Name</mat-label>
-              <input [(ngModel)]="game.title" matInput>
+              <input required [(ngModel)]="game.title" matInput>
               <mat-icon (click)="removeGame(gameIndex)" matSuffix>remove</mat-icon>
             </mat-form-field>
           </p>
@@ -35,7 +35,7 @@
             <p>
               <mat-form-field appearance="fill">
                 <mat-label>Split Name</mat-label>
-                <input [(ngModel)]="split.title" matInput>
+                <input required [(ngModel)]="split.title" matInput>
                 <mat-icon (click)="removeSplit(gameIndex, splitIndex)" matSuffix>remove</mat-icon>
               </mat-form-field>
             </p>
@@ -55,7 +55,14 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button (click)="createNewGame()" mat-raised-button color="primary">Add game<mat-icon>add</mat-icon></button>
+    <button [disabled]="run.title == ''" (click)="createNewGame()" mat-raised-button color="primary">Add
+      game<mat-icon>add</mat-icon></button>
+    <div>
+      <button [disabled]="!isValidRun" [mat-dialog-close]="run" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
+      <button [mat-dialog-close]="" mat-button color="primary"><mat-icon>close</mat-icon></button>
+    </div>
   </mat-card-actions>
-  <mat-card-footer></mat-card-footer>
+  <mat-card-footer>
+
+  </mat-card-footer>
 </mat-card>

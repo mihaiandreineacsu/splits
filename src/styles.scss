@@ -2,3 +2,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-pane{
+    overflow: hidden;
+
+    .mat-mdc-card-content{
+        max-height: 80vh;
+        overflow: auto;
+    }
+}
+
+.mdc-card__actions{
+    gap: 16px;
+    justify-content: space-between;
+}

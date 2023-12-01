@@ -13,6 +13,13 @@ export class CreateRunComponent {
   @Input() run = new Run();
   @Output() runChange = new EventEmitter<Run>();
 
+  get isValidRun(): boolean {
+    if (this.run.title == "") return false;
+    if (this.run.games.some(g => g.title == "")) return false;
+    if (this.run.games.some(g => g.splits.some(s => s.title == ""))) return false;
+    return true;
+  }
+
   constructor(@Optional() private dialogRef?: MatDialogRef<CreateRunComponent>) {
 
   }
