@@ -3,10 +3,12 @@ import { CreateRunComponent } from 'src/app/components/create-run/create-run.com
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { RunsComponent } from 'src/app/components/runs/runs.component';
+import { ViewRunComponent } from 'src/app/components/view-run/view-run.component';
 
 const declarations = [
   CreateRunComponent,
-  RunsComponent
+  RunsComponent,
+  ViewRunComponent
 ];
 
 const imports = [
